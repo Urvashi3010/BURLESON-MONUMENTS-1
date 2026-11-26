@@ -1,0 +1,49 @@
+/* =========================================================
+   BRAND COLOURS — the ONLY place colours are defined.
+   Change the hex values + their matching RGB triplets here
+   and the whole site follows. (Triplets power the soft
+   transparent shadows, glows and overlays.)
+   ========================================================= */
+:root {
+  /* Navy — lighter, softer, closer to a classic memorial blue */
+  --navy: #3a5b96;
+  --navy-soft: #5b7fba;
+  --navy-deep: #2d4a7e;
+  --navy-darkest: #253e6b;
+  --navy-rgb: 58, 91, 150;
+  --navy-soft-rgb: 91, 127, 186;
+  --navy-deep-rgb: 45, 74, 126;
+
+  /* Gold — warm, refined */
+  --gold: #c9a24d;
+  --gold-light: #e3c883;
+  --gold-dark: #9a7728; /* gold for small text on white (better contrast) */
+  --gold-rgb: 201, 162, 77;
+
+  /* Neutrals */
+  --white: #ffffff;
+  --off-white: #f4f6fa; /* cool light grey */
+  --sky: #e9f0fa; /* very light navy tint, for soft sections */
+  --ink: #111111;
+  --grey-800: #2a2d33;
+  --grey-600: #5b6068;
+  --grey-300: #d6d9df;
+  --grey-200: #e6e9ee;
+
+  /* Type */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --container: 1240px;
+  --nav-h: 78px;
+  --topbar-h: 38px;
+  --radius: 4px;
+
+  /* Depth */
+  --shadow-sm: 0 4px 14px rgba(var(--navy-deep-rgb), 0.1);
+  --shadow-md: 0 18px 40px -12px rgba(var(--navy-deep-rgb), 0.26);
+  --shadow-lg: 0 34px 70px -18px rgba(var(--navy-deep-rgb), 0.4);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

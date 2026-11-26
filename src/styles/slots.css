@@ -1,0 +1,164 @@
+/* =========================================================
+   IMAGE SLOTS — placeholder frames (and real images once added)
+   Only brand colours: navy, gold, white, greys.
+   ========================================================= */
+.slot,
+.slot-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.slot-img {
+  object-fit: cover;
+}
+
+.slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  container-type: inline-size;
+}
+
+/* tones */
+.slot--light {
+  background: linear-gradient(135deg, var(--white) 0%, var(--grey-200) 100%);
+  color: var(--navy);
+}
+.slot--dark {
+  background: linear-gradient(150deg, var(--navy-soft) 0%, var(--navy) 48%, var(--navy-deep) 100%);
+  color: var(--gold-light);
+}
+
+/* fine diagonal hatching */
+.slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 22px);
+  opacity: 0.055;
+}
+/* inner gold hairline frame */
+.slot::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid var(--gold);
+  opacity: 0.5;
+  pointer-events: none;
+  transition: inset 0.5s var(--ease), opacity 0.5s var(--ease);
+}
+.slot--dark::after {
+  opacity: 0.4;
+}
+
+/* gold corner brackets */
+.slot__corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 0 solid var(--gold);
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.5s var(--ease);
+}
+.slot__corner--tl { top: 6px; left: 6px; border-top-width: 2px; border-left-width: 2px; }
+.slot__corner--tr { top: 6px; right: 6px; border-top-width: 2px; border-right-width: 2px; }
+.slot__corner--bl { bottom: 6px; left: 6px; border-bottom-width: 2px; border-left-width: 2px; }
+.slot__corner--br { bottom: 6px; right: 6px; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* gallery / hover feedback: corners and frame tighten */
+:hover > .slot::after,
+:hover > * > .slot::after,
+a:hover .slot::after {
+  inset: 14px;
+  opacity: 0.85;
+}
+a:hover .slot__corner--tl,
+:hover > .slot .slot__corner--tl { transform: translate(4px, 4px); }
+a:hover .slot__corner--tr,
+:hover > .slot .slot__corner--tr { transform: translate(-4px, 4px); }
+a:hover .slot__corner--bl,
+:hover > .slot .slot__corner--bl { transform: translate(4px, -4px); }
+a:hover .slot__corner--br,
+:hover > .slot .slot__corner--br { transform: translate(-4px, -4px); }
+
+.slot__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  text-align: center;
+  max-width: 100%;
+}
+.slot__icon {
+  color: var(--gold);
+  opacity: 0.9;
+}
+.slot__label {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  opacity: 0.85;
+}
+.slot__hint {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.02em;
+  opacity: 0.55;
+  padding-top: 8px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.5);
+}
+
+/* graceful shrinking */
+@container (max-width: 230px) {
+  .slot__hint { display: none; }
+}
+@container (max-width: 150px) {
+  .slot__label { display: none; }
+}
+@container (max-width: 90px) {
+  .slot__icon { display: none; }
+}
+
+/* compact = tiny slots (logo, chips, badges): no corners / inner frame */
+.slot--compact::after,
+.slot--compact .slot__corner {
+  display: none;
+}
+.slot--compact::before {
+  opacity: 0.08;
+}
+
+.monogram {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--navy);
+}
+
+/* ---- Framed image containers (fixed aspect ratios so layouts never collapse) ---- */
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--white);
+  border: 10px solid var(--white);
+  outline: 1px solid var(--gold);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.frame--tall { aspect-ratio: 4 / 5; }
+.frame--wide { aspect-ratio: 4 / 3; }
+.frame--square { aspect-ratio: 1 / 1; }
+.frame > .slot,
+.frame > .slot-img {
+  height: 100%;
+}
