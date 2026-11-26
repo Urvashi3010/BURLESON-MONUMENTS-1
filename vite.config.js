@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 // (e.g. /about, /memorials/memorial-benches) with index.html, so refresh and direct
 // URLs work. `base: '/'` keeps asset URLs absolute so deep links never break.
 export default defineConfig({
-  base: '/',
+ base: '/BURLESON-MONUMENTS-1/',
   appType: 'spa',
   plugins: [react()],
   server: { host: true, port: 5173 },
